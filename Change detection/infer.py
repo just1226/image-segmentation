@@ -1,33 +1,43 @@
-import sys
-sys.path.append('/image-segmentation/PaddleRS')
 import os
 import os.path as osp
-import cv2
 import paddlers as pdrs
 from paddlers import transforms as T
 import paddle
 import numpy as np
 import tqdm
+from copy import deepcopy
+from functools import partial
+from skimage.io import imsave
+import sys
+from models import model
+
+sys.path.append('/image-segmentation/PaddleRS')
 
 CROP_SIZE = 640
-ORIGINAL_SIZE = (1024,1024)
+ORIGINAL_SIZE = (1024, 1024)
 STRIDE = 64
-#数据集所在路径
+INFER_BATCH_SIZE = 8
+# 数据集所在路径
 DATA_DIR = ""
-#保存输出路径
+# 保存输出路径
 EXP_DIR = ""
-#保存最佳模型路径
+# 保存最佳模型路径
 BEST_CKP_PATH = osp.join(EXP_DIR, 'best_model', 'model.pdparams')
+
+
 # 定义一些辅助函数
 
 def info(msg, **kwargs):
     print(msg, **kwargs)
 
+
 def warn(msg, **kwargs):
-    print('\033[0;31m'+msg, **kwargs)
+    print('\033[0;31m' + msg, **kwargs)
+
 
 def quantize(arr):
-    return (arr*255).astype('uint8')
+    return (arr * 255).astype('uint8')
+
 
 # 定义推理阶段使用的数据集
 
@@ -41,9 +51,9 @@ class InferDataset(paddle.io.Dataset):
     """
 
     def __init__(
-        self,
-        data_dir,
-        transforms
+            self,
+            data_dir,
+            transforms
     ):
         super().__init__()
 
@@ -85,6 +95,8 @@ class InferDataset(paddle.io.Dataset):
 
     def __len__(self):
         return len(self.samples)
+
+
 # 考虑到原始影像尺寸较大，以下类和函数与影像裁块-拼接有关。
 
 class WindowGenerator:
@@ -103,16 +115,16 @@ class WindowGenerator:
         # 列优先移动（C-order）
         if self._i > self.h:
             raise StopIteration
-        
-        bottom = min(self._i+self.ch, self.h)
-        right = min(self._j+self.cw, self.w)
-        top = max(0, bottom-self.ch)
-        left = max(0, right-self.cw)
 
-        if self._j >= self.w-self.cw:
-            if self._i >= self.h-self.ch:
+        bottom = min(self._i + self.ch, self.h)
+        right = min(self._j + self.cw, self.w)
+        top = max(0, bottom - self.ch)
+        left = max(0, right - self.cw)
+
+        if self._j >= self.w - self.cw:
+            if self._i >= self.h - self.ch:
                 # 设置一个非法值，使得迭代可以early stop
-                self._i = self.h+1
+                self._i = self.h + 1
             self._goto_next_row()
         else:
             self._j += self.sj
@@ -128,7 +140,7 @@ class WindowGenerator:
         self._i += self.si
         self._j = 0
 
-    
+
 def crop_patches(dataloader, ori_size, window_size, stride):
     """
     将`dataloader`中的数据裁块。
@@ -151,7 +163,7 @@ def crop_patches(dataloader, ori_size, window_size, stride):
         all_patches = []
         for rows, cols in win_gen:
             # NOTE: 此处不能使用生成器，否则因为lazy evaluation的缘故会导致结果不是预期的
-            patches = [im[...,rows,cols] for im in ims]
+            patches = [im[..., rows, cols] for im in ims]
             all_patches.append(patches)
         yield name[0], tuple(map(partial(paddle.concat, axis=0), zip(*all_patches)))
 
@@ -161,14 +173,16 @@ def recons_prob_map(patches, ori_size, window_size, stride):
     # NOTE: 目前只能处理batch size为1的情况
     h, w = ori_size
     win_gen = WindowGenerator(h, w, window_size, window_size, stride, stride)
-    prob_map = np.zeros((h,w), dtype=np.float)
-    cnt = np.zeros((h,w), dtype=np.float)
+    prob_map = np.zeros((h, w), dtype=np.float)
+    cnt = np.zeros((h, w), dtype=np.float)
     # XXX: 需要保证win_gen与patches具有相同长度。此处未做检查
     for (rows, cols), patch in zip(win_gen, patches):
         prob_map[rows, cols] += patch
         cnt[rows, cols] += 1
     prob_map /= cnt
     return prob_map
+
+
 # 若输出目录不存在，则新建之（递归创建目录）
 out_dir = osp.join(EXP_DIR, 'out')
 if not osp.exists(out_dir):
@@ -215,15 +229,15 @@ test_patches = crop_patches(
 with paddle.no_grad():
     for name, (t1, t2) in tqdm(test_patches, total=len_test):
         shape = paddle.shape(t1)
-        pred = paddle.zeros(shape=(shape[0],2,*shape[2:]))
+        pred = paddle.zeros(shape=(shape[0], 2, *shape[2:]))
         for i in range(0, shape[0], INFER_BATCH_SIZE):
-            pred[i:i+INFER_BATCH_SIZE] = model.net(t1[i:i+INFER_BATCH_SIZE], t2[i:i+INFER_BATCH_SIZE])[0]
+            pred[i:i + INFER_BATCH_SIZE] = model.net(t1[i:i + INFER_BATCH_SIZE], t2[i:i + INFER_BATCH_SIZE])[0]
         # 取softmax结果的第1（从0开始计数）个通道的输出作为变化概率
-        prob = paddle.nn.functional.softmax(pred, axis=1)[:,1]
+        prob = paddle.nn.functional.softmax(pred, axis=1)[:, 1]
         # 由patch重建完整概率图
         prob = recons_prob_map(prob.numpy(), ORIGINAL_SIZE, CROP_SIZE, STRIDE)
         # 默认将阈值设置为0.5，即，将变化概率大于0.5的像素点分为变化类
-        out = quantize(prob>0.35)
+        out = quantize(prob > 0.35)
 
         imsave(osp.join(out_dir, name), out, check_contrast=False)
 
