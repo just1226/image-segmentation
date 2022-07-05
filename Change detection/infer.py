@@ -1,5 +1,17 @@
+import sys
+sys.path.append('/image-segmentation/PaddleRS')
+import os
+import os.path as osp
+import cv2
+import paddlers as pdrs
+from paddlers import transforms as T
+import paddle
+import numpy as np
+import tqdm
 
-
+CROP_SIZE = 640
+ORIGINAL_SIZE = (1024,1024)
+STRIDE = 64
 #数据集所在路径
 DATA_DIR = ""
 #保存输出路径
