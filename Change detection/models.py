@@ -1,4 +1,3 @@
-import paddle
 import paddlers as pdrs
 
 
