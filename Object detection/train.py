@@ -1,12 +1,11 @@
 import random
 import os.path as osp
-
-import cv2
 import numpy as np
 import paddle
 import paddlers as pdrs
 from paddlers import transforms as T
-from paddlers.tasks.utils.visualize import visualize_detection
+import sys
+sys.path.append('/image-segmentation/PaddleRS')
 
 # 定义全局变量
 
@@ -96,23 +95,23 @@ model.net_initialize(
 
 if __name__ == "__main__":
 # 执行模型训练
-model.train(
-    num_epochs=100,
-    train_dataset=train_dataset,
-    train_batch_size=8,
-    eval_dataset=val_dataset,
-    # 每多少个epoch存储一次检查点
-    save_interval_epochs=10,
-    # 每多少次迭代记录一次日志
-    log_interval_steps=10,
-    save_dir=EXP_DIR,
-    # 指定预训练权重
-    pretrain_weights='COCO',
-    # 初始学习率大小
-    learning_rate=0.0001,
-    # 学习率预热（learning rate warm-up）步数与初始值
-    warmup_steps=0,
-    warmup_start_lr=0.0,
-    # 是否启用VisualDL日志功能
-    use_vdl=True
-)
+    model.train(
+        num_epochs=100,
+        train_dataset=train_dataset,
+        train_batch_size=8,
+        eval_dataset=val_dataset,
+        # 每多少个epoch存储一次检查点
+        save_interval_epochs=10,
+        # 每多少次迭代记录一次日志
+        log_interval_steps=10,
+        save_dir=EXP_DIR,
+        # 指定预训练权重
+        pretrain_weights='COCO',
+        # 初始学习率大小
+        learning_rate=0.0001,
+        # 学习率预热（learning rate warm-up）步数与初始值
+        warmup_steps=0,
+        warmup_start_lr=0.0,
+        # 是否启用VisualDL日志功能
+        use_vdl=True
+    )
