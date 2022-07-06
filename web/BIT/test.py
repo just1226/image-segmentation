@@ -46,7 +46,7 @@ print(res)
     变化的概率，第1个通道表示发生变化的概率。如果返回的结果是由字典构成的列表，则列表中的第n项与输入的img_file中的第n项对应。
 """
 # 下面的语句从res中解析二值变化图（binary change map）
-cm_1024x1024 = res[0]['label_map']
+cm_1024x1024 = res['label_map']
 
 # 从左到右依次显示：第一时相影像、第二时相影像、整图推理结果以及真值标签
 plt.figure(constrained_layout=True)
