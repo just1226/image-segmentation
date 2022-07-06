@@ -10,6 +10,11 @@ pip install -r requirements.txt
 python setup.py install
 ```
 * python >= 3.7 <br>
+* 安装相应库
+```python
+cd image-segementation
+pip install -r requirements.txt
+```
 # 2.数据集下载
 * 变化检测数据集下载地址<br>
 https://aistudio.baidu.com/aistudio/datasetdetail/134796 <rb>
@@ -32,3 +37,10 @@ https://aistudio.baidu.com/aistudio/datasetdetail/52980 <br>
 !unzip -oq -d /home/aistudio/data/data52980/rsod/ /home/aistudio/data/data52980/RSOD-Dataset.zip
 !unzip -oq -d /home/aistudio/data/data52980/rsod/ /home/aistudio/data/data52980/rsod/RSOD-Dataset/playground.zip
 ```
+* 目标提取数据集下载地址 <br>
+https://aistudio.baidu.com/aistudio/datasetdetail/56961 <br>
+```python
+# 解压数据集
+!unzip -oq -d /home/aistudio/data/data56961/massroad /home/aistudio/data/data56961/mass_road.zip
+```
+
