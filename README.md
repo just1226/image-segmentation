@@ -64,7 +64,13 @@ python infer.py
  * out_dir 结果保存路径<br>
 # 4.模型导出
 * 模型导出与部署[点击此处](https://github.com/PaddleCV-SIG/PaddleRS/tree/develop/deploy/export)
-# 5.代码结构与详细说明
+# 5.web运行
+* 将本项目克隆到本地后，导出训练好的模型权重文件或者下载我们提供的模型导出权重文件放到指定文件夹下<br>
+```python
+python app.py
+```
+打开网页输入 `http://127.0.0.1:5000/`即可运行web
+# 6.代码结构与详细说明
 ```python
 image-segmentation
 ├── Change detection
