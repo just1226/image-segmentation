@@ -52,12 +52,12 @@ python dataset.py
 python BIT-trains.py
 ```
 * 参数介绍<br>
-*  DATA_DIR 数据集路径<br>
-*  EXP_DIR 模型权重和日志存放路径<br>
-*  BEST_CKP_PATH 最佳模型路径<br>
+  *  DATA_DIR 数据集路径<br>
+  *  EXP_DIR 模型权重和日志存放路径<br>
+  *  BEST_CKP_PATH 最佳模型路径<br>
 *  验证<br>
 ```python
 python infer.py
 ```
-*  DATA_DIR 数据集路径<br>
-*  out_dir 结果保存路径<br>
+  * DATA_DIR 数据集路径<br>
+  * out_dir 结果保存路径<br>
