@@ -43,4 +43,10 @@ https://aistudio.baidu.com/aistudio/datasetdetail/56961 <br>
 # 解压数据集
 !unzip -oq -d /home/aistudio/data/data56961/massroad /home/aistudio/data/data56961/mass_road.zip
 ```
-
+# 3.训练
+* 以变化检测为例
+```python
+cd image-segmentation/Change detection/
+run dataset.py
+run BIT.train.py
+```
