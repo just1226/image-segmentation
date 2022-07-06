@@ -64,3 +64,27 @@ python infer.py
  * out_dir 结果保存路径<br>
 # 4.模型导出
 * 模型导出与部署[点击此处](https://github.com/PaddleCV-SIG/PaddleRS/tree/develop/deploy/export)
+# 5.代码结构与详细说明
+```python
+image-segmentation
+├── Change detection
+      ├── BIT-trains.py  # 变化检测模型训练
+      ├── dataset.py     # 数据处理
+      ├── infer.py       # 变化检测模型推理
+      ├── models.py      # 变化检测模型
+├── Classification of features
+      ├── dataset.py     # 数据处理
+      ├── infer.py       # 地物分类模型推理
+      ├── trains.py      # 地物分类模型训练
+├── Object detection
+      ├── dataset.py     # 数据处理
+      ├── infer.py       # 目标检测模型推理
+      ├── trains.py      # 目标检测模型训练
+├── Target extraction
+      ├── dataset.py     # 数据处理
+      ├── infer.py       # 目标提取模型推理
+      ├── trains.py      # 目标提取模型训练
+├── requirement.txt      # 相应库
+```
+
+
