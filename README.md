@@ -62,11 +62,11 @@ python infer.py
 * 参数介绍
  * DATA_DIR 数据集路径<br>
  * out_dir 结果保存路径<br>
-* 也可以下载我们训练好权重文件，分别放到对应的文件夹下即可。[百度云链接]()
+* 也可以下载我们训练好权重文件，分别放到对应的文件夹下即可。[百度云链接](https://pan.baidu.com/s/1YDVUJiu-jus-Ur17eTPgYA),提取码 bda4
 # 4.模型导出
 训练完成后可以通过下面的方式导出模型<br>
 * 模型导出与部署[点击此处](https://github.com/PaddleCV-SIG/PaddleRS/tree/develop/deploy/export)
-* 我们提供模型导出权重文件下载 [百度云链接]()
+* 我们提供模型导出权重文件下载 [百度云链接](https://pan.baidu.com/s/10OurgBOMNVeun8DTRbFoIg),提取码 bda4
 # 5.web运行
 * 将本项目克隆到本地后，导出训练好的模型权重文件或者下载我们提供的模型导出权重文件放到指定文件夹下<br>
 ```python
