@@ -59,5 +59,8 @@ python BIT-trains.py
 ```python
 python infer.py
 ```
-  * DATA_DIR 数据集路径<br>
-  * out_dir 结果保存路径<br>
+* 参数介绍
+ * DATA_DIR 数据集路径<br>
+ * out_dir 结果保存路径<br>
+# 4.模型导出
+* 模型导出与部署[点击此处](https://github.com/PaddleCV-SIG/PaddleRS/tree/develop/deploy/export"模型导出与部署")
