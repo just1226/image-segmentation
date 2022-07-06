@@ -1,0 +1,1 @@
+static_model文件夹下存放导出的BIT权重文件
