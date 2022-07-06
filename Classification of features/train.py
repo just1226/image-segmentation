@@ -98,7 +98,7 @@ optimizer = paddle.optimizer.Adam(
     parameters=model.net.parameters()
 )
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # 执行模型训练
     model.train(
         num_epochs=60,
