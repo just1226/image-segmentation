@@ -55,7 +55,7 @@ python BIT-trains.py
   *  DATA_DIR 数据集路径<br>
   *  EXP_DIR 模型权重和日志存放路径<br>
   *  BEST_CKP_PATH 最佳模型路径<br>
-*  验证<br>
+*  测试<br>
 ```python
 python infer.py
 ```
@@ -63,4 +63,4 @@ python infer.py
  * DATA_DIR 数据集路径<br>
  * out_dir 结果保存路径<br>
 # 4.模型导出
-* 模型导出与部署[点击此处](https://github.com/PaddleCV-SIG/PaddleRS/tree/develop/deploy/export"模型导出与部署")
+* 模型导出与部署[点击此处](https://github.com/PaddleCV-SIG/PaddleRS/tree/develop/deploy/export)
