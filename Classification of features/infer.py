@@ -7,7 +7,7 @@ import paddle
 import paddlers as pdrs
 from matplotlib import pyplot as plt
 from PIL import Image
-from trains import model, eval_transforms
+from train import model, eval_transforms
 
 # 数据集存放目录
 DATA_DIR = '/home/aistudio/data/data77571/dataset/'
