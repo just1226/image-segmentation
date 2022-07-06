@@ -68,22 +68,49 @@ python infer.py
 ```python
 image-segmentation
 ├── Change detection
-      ├── BIT-trains.py  # 变化检测模型训练
-      ├── dataset.py     # 数据处理
-      ├── infer.py       # 变化检测模型推理
-      ├── models.py      # 变化检测模型
+      ├── BIT-trains.py       # 变化检测模型训练
+      ├── dataset.py          # 数据处理
+      ├── infer.py            # 变化检测模型推理
+      ├── models.py           # 变化检测模型
 ├── Classification of features
-      ├── dataset.py     # 数据处理
-      ├── infer.py       # 地物分类模型推理
-      ├── trains.py      # 地物分类模型训练
+      ├── dataset.py          # 数据处理
+      ├── infer.py            # 地物分类模型推理
+      ├── trains.py           # 地物分类模型训练
 ├── Object detection
-      ├── dataset.py     # 数据处理
-      ├── infer.py       # 目标检测模型推理
-      ├── trains.py      # 目标检测模型训练
+      ├── dataset.py          # 数据处理
+      ├── infer.py            # 目标检测模型推理
+      ├── trains.py           # 目标检测模型训练
 ├── Target extraction
-      ├── dataset.py     # 数据处理
-      ├── infer.py       # 目标提取模型推理
-      ├── trains.py      # 目标提取模型训练
+      ├── dataset.py          # 数据处理
+      ├── infer.py            # 目标提取模型推理
+      ├── trains.py           # 目标提取模型训练
+├── web                       # web源码
+      ├── BIT                 
+           ├── static_model   # 变化检测导出模型权重
+           ├── test.py        # 变换检测导出模型
+      ├── classify            
+           ├── export         # 地物分类导出模型权重
+           ├── cls_test.py    # 地物分类导出模型
+      ├── PaddleRS-develop    # paddlers
+      ├── PPYOLO              
+           ├── PPYOLO_model   # 目标检测导出模型权重
+           ├── main.py        # 目标检测导出模型
+      ├── saved_files         # 测试图片
+           ├── bit            # 变化检测测试图片
+           ├── cls            # 地物分类测试图片
+           ├── odt            # 目标检测测试图片
+           ├── tq             # 目标提取测试图片
+      ├── saved_imgs          # 结果保存
+           ├── bit            # 变化检测结果
+           ├── cls            # 地物分类结果
+           ├── odt            # 目标检测结果
+           ├── tq             # 目标提取结果
+      ├── static              # 网页设计
+      ├── templates           # 网页设计
+      ├── tq_best              
+           ├── export         # 目标提取导出模型权重
+           ├── main.py        # 目标提取导出模型
+      ├── app.py              # web启动
 ├── requirement.txt      # 相应库
 ```
 
