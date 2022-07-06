@@ -1,4 +1,4 @@
-from models import model, eval_transforms
+from train import model, eval_transforms
 import paddle
 import paddlers as pdrs
 import os.path as osp
