@@ -66,7 +66,7 @@ python infer.py
 # 4.模型导出
 训练完成后可以通过下面的方式导出模型<br>
 * 模型导出与部署[点击此处](https://github.com/PaddleCV-SIG/PaddleRS/tree/develop/deploy/export)
-* 导出模型权重文件下载 [百度云链接]()
+* 我们提供模型导出权重文件下载 [百度云链接]()
 # 5.web运行
 * 将本项目克隆到本地后，导出训练好的模型权重文件或者下载我们提供的模型导出权重文件放到指定文件夹下<br>
 ```python
