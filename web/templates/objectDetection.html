@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='static/css/upl.css')}}">
+    <title>目标检测</title>
+    <style>
+        div {
+            margin: 20vh auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <form action="/saveOD" method="post" enctype="multipart/form-data">
+        <a href="javascript:;" class="sfile">选择文件
+            <input type="file" name="img" id="">
+        </a>
+        <img id="img" height="300" src="">
+        <input type="submit" value="上传图片" class="file">
+    </form>
+    <h3><a href="/">Back to Homepage</a></h3>
+</div>
+<script type="text/javascript">
+    var img = document.querySelector('input[name=img]');
+
+    imgs = document.querySelector('#img');
+
+    if(img){
+
+        img.addEventListener('change', function() {
+
+            var file = this.files[0];
+
+            var reader = new FileReader();
+
+            // 监听reader对象的的onload事件，当图片加载完成时，把base64编码賦值给预览图片
+
+            reader.addEventListener("load", function() {
+
+                imgs.src = reader.result;
+
+            }, false);
+
+            // 调用reader.readAsDataURL()方法，把图片转成base64
+
+            reader.readAsDataURL(file);
+
+            $("img").eq(1).css("display", "block");
+
+        }, false);
+
+    }
+</script>
+</body>
+</html>

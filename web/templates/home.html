@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <title>基于百度飞桨的遥感图像智能解译平台</title>
+    <link  rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='static/css/home.css')}}">
+    <link rel="icon" href="{{url_for('static',filename='static/img/TH1.jpg')}}" sizes="32x32">
+
+</head>
+<body>
+<div class="content" >
+    <ul>
+        <li><img src="{{url_for('static',filename='static/img/LG.jpg')}}" alt="" class="img"></li>
+        <li><p class="active" href="#home">基于百度飞桨的遥感图像智能解译平台</p></li>
+        <li><a href="#news">首页</a></li>
+        <li><a href="#contact">服务</a></li>
+        <li><a href="#about">邮箱</a></li>
+        <!--<li><input type="text"></li>-->
+        <!--<li class="search">-->
+            <!--<form method="get">-->
+                <!--<input type="text" name="search" class="search" placeholder="搜索" />-->
+            <!--</form>-->
+        <!--</li>-->
+        <li><img src="{{url_for('static',filename='static/img/dog.jpg')}}" alt="" class="dog"></li>
+        <li class="last"><a href="#login" title="登陆成功" >凑数队</a></li>
+        <li>
+            <a href="#" class="menu-icon"></a>
+        </li>
+    </ul>
+</div>
+<div class="need">
+<ul class="ull">
+    <li class="sz">
+        <!--<img src="./img/shezhi.jpg" alt="" class="shezhi">-->
+        <a href="">设置</a>
+    </li>
+    <li>
+        <a href="">历史记录</a>
+    </li>
+    <li>
+        <a href="">隐私</a>
+    </li>
+    <li>
+        <a href="">换肤</a>
+    </li>
+    <li>
+        <a href="">关于</a>
+    </li>
+</ul>
+
+
+</div>
+
+<img class="xin" src="{{url_for('static',filename='static/img/1.webp')}}" alt="">
+<div class="video1">
+    <video data-color="blue" data-ckin="default" data-overlay="1" class="video"  height="center" controls title="显示视频" autoplay="autoplay" loop="loop">
+        插入视频
+        <source src="{{url_for('static',filename='static/img/video.mp4')}}"  type="video/mp4">
+    </video>
+</div>
+
+<div id="grid">
+    <a href="/objectTQ"><img src="{{url_for('static',filename='static/img/11.webp')}}" alt="" title="对卫星图像中指定对象完成分割">目标提取</a>
+    <a href="/changeDetection"><img src="{{url_for('static',filename='static/img/22.webp')}}" alt="" title="对同区域两个时期的卫星图像变化情况完成分析">变化检测</a>
+    <a href="/objectDetection"><img src="{{url_for('static',filename='static/img/33.webp')}}" alt="" title="对卫星图像中指定对象完成检测">目标检测</a>
+    <a href="/objectClass"><img src="{{url_for('static',filename='static/img/44.webp')}}" alt="" title="对卫星图像每个像素完成分类">地物分类</a>
+</div>
+<!--<div style="text-align: center;color: white;font-family: '微软雅黑';font-size: 1.2rem;margin-top: 60px">-->
+<!--    &lt;!&ndash;<div>系统简介</div>&ndash;&gt;-->
+<!--    <div id="wrap">-->
+<!--        <div id="div1" style="width: 200px;height: 100px;">团队信息-->
+<!--            <p>xxx xxx xxx xxx xxx</p>-->
+<!--        </div>-->
+<!--        <div id="div2" style="width: 200px;height: 100px;">高校信息-->
+<!--            <p>长沙理工大学</p>-->
+<!--        </div>-->
+<!--        <div id="div3" style="width: 200px;height: 100px;">版本信息-->
+<!--            <p>version 1.0试用版</p>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div style="font-size: 15px;margin-bottom:32px ;">-->
+<!--        版权所有&copy长沙理工大学 |地址：湖南省长沙市天心区长沙理工大学 |邮编：410114 |反馈意见：318889131@qq.com |京ICP备XXXXXXXX号-X |京公网安备 XXXXXXXXXXXX 号-->
+<!--    </div>-->
+
+<script>
+    var menu_icon = document.querySelector('.menu-icon');
+    var need = document.querySelector('.need');
+    var ull = document.querySelector('.ull');
+    var lis = ull.children;
+    // conso
+    menu_icon.onclick = function(){
+        need.style.display = 'block';
+    }
+    need.onmouseover = function(){
+        need.style.display = 'block';
+    }
+    need.onmouseout = function(){
+        need.style.display = 'none';
+    }
+
+</script>
+</body>
+</html>

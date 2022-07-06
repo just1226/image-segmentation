@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--    <link  rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='static/css/upl.css')}}">-->
+    <title>result</title>
+    <style>
+        div {
+            margin: 10vh auto;
+            text-align: center;
+        }
+        #result {
+            width: 700px;
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1>Segmentation Result!</h1>
+    <h3><a href="/">Back to Homepage</a></h3>
+    <div id = 'bitdata' d="{{data}}" style="display:none"></div>
+    <div id="result">
+        <div id="tq" class="a" style="display:none">
+            <img src="../saved_imgs/tq/tq_res.png?{{no_cache}}" alt="">
+<!--            <img src="../static/img/tq/tq_res.png", width="300" alt="segmentation result">-->
+        </div>
+        <div id="odt" class="a" style="display:none">
+            <!--            <div id = 'bitdata' d="{{data}}" style="display:none"></div>-->
+            <img src="../saved_imgs/odt/odt_res.png?{{no_cache}}" alt="">
+        </div>
+        <div id="bit" class="a" style="display:none">
+<!--            <div id = 'bitdata' d="{{data}}" style="display:none"></div>-->
+            <img src="../saved_imgs/bit/bit_res.png?{{no_cache}}" alt="">
+        </div>
+        <div id="cls" class="a" style="display:none">
+            <!--            <div id = 'bitdata' d="{{data}}" style="display:none"></div>-->
+            <img src="../saved_imgs/cls/cls_res.png?{{no_cache}}" alt="">
+        </div>
+    </div>
+
+</div>
+<script>
+    var data = document.getElementById("bitdata").getAttribute('d');
+    var divEle =document.getElementsByClassName("a");
+    // alert(divEle[0])
+    window.onload= function(){
+        // console.log(divEle[0])
+        num=data-1;
+        divEle[num].style.display="block"
+    }
+
+
+</script>
+</body>
+</html>

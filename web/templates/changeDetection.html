@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='static/css/upl.css')}}">
+    <title>变化检测</title>
+    <style>
+        div {
+            margin: 20vh auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <form action="/saveCD" method="post" onsubmit="SearchSubmit();"  enctype="multipart/form-data">
+        <div>
+            <label style="font-size:25px;" >A:</label>
+            <a href="javascript:;" class="sfile">选择文件
+                <input type="file" name="file1">
+            </a>
+            <img id="img1" height="600" src="">
+        </div>
+        <div>
+            <label style="font-size:25px;">B:</label>
+            <a href="javascript:;" class="sfile">选择文件
+                <input type="file" name="file2">
+            </a>
+            <img id="img2" height="600" src="">
+        </div>
+        <div>
+            <input type="submit" value="上传图片" class="file">
+        </div>
+    </form>
+    <h3><a href="">show result</a></h3>
+    <h3><a href="/">Back to Homepage</a></h3>
+</div>
+<script>
+    var img1 = document.querySelector('input[name=file1]');
+    var img2 = document.querySelector('input[name=file2]')
+
+    imgs1 = document.querySelector('#img1');
+    imgs2 = document.querySelector("#img2")
+
+    if(img1){
+
+        img1.addEventListener('change', function() {
+
+            var file = this.files[0];
+
+            var reader = new FileReader();
+
+            // 监听reader对象的的onload事件，当图片加载完成时，把base64编码賦值给预览图片
+
+            reader.addEventListener("load", function() {
+
+                imgs1.src = reader.result;
+
+            }, false);
+
+            // 调用reader.readAsDataURL()方法，把图片转成base64
+
+            reader.readAsDataURL(file);
+
+            $("img1").eq(1).css("display", "block");
+
+        }, false);
+
+    }
+
+    if(img2){
+
+        img2.addEventListener('change', function() {
+
+            var file = this.files[0];
+
+            var reader = new FileReader();
+
+            // 监听reader对象的的onload事件，当图片加载完成时，把base64编码賦值给预览图片
+
+            reader.addEventListener("load", function() {
+
+                imgs2.src = reader.result;
+
+            }, false);
+
+            // 调用reader.readAsDataURL()方法，把图片转成base64
+
+            reader.readAsDataURL(file);
+
+            $("img2").eq(1).css("display", "block");
+
+        }, false);
+
+    }
+</script>
+</body>
+</html>
