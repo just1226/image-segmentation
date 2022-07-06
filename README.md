@@ -43,10 +43,21 @@ https://aistudio.baidu.com/aistudio/datasetdetail/56961 <br>
 # 解压数据集
 !unzip -oq -d /home/aistudio/data/data56961/massroad /home/aistudio/data/data56961/mass_road.zip
 ```
-# 3.训练
-* 以变化检测为例
+# 3.模型训练与测试
+* 以变化检测为例<br>
+*   训练<br>
 ```python
 cd image-segmentation/Change detection/
-run dataset.py
-run BIT.train.py
+python dataset.py
+python BIT-trains.py
 ```
+* 参数介绍<br>
+*  DATA_DIR 数据集路径<br>
+*  EXP_DIR 模型权重和日志存放路径<br>
+*  BEST_CKP_PATH 最佳模型路径<br>
+*  验证<br>
+```python
+python infer.py
+```
+*  DATA_DIR 数据集路径<br>
+*  out_dir 结果保存路径<br>
