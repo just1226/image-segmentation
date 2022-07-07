@@ -1,4 +1,4 @@
-# image-segmentation
+# 基于百度飞浆的遥感图像智能解译平台
 # 1.环境依赖
 * PaddlePaddle >= 2.2.0<br>
 * PaddleRS安装<br>
